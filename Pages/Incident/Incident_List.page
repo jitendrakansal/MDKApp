@@ -1,22 +1,51 @@
 {
 	"Controls": [
 		{
+			"FilterFeedbackBar": {
+				"ShowAllFilters": true,
+				"FastFilters": [
+					{
+						"_Type": "Control.Type.FastFilterItem",
+						"_Name": "FastFilter0",
+						"ReturnValue": "Urgency eq 'High'",
+						"DisplayValue": "High Priority",
+						"FilterType": "Filter"
+					},
+					{
+						"_Type": "Control.Type.FastFilterItem",
+						"_Name": "FastFilter1",
+						"DisplayValue": "Open Status",
+						"ReturnValue": "Status eq 'New' or Status eq 'In Process'",
+						"FilterType": "Filter"
+					}
+				],
+				"_Type": "Control.Type.FilterFeedbackBar"
+			},
 			"_Type": "Control.Type.SectionedTable",
 			"_Name": "SectionedTable",
 			"Sections": [
 				{
 					"Header": {
+						"_Type": "SectionCommon.Type.Header",
 						"_Name": "SectionHeader0",
-						"AccessoryType": "none",
+						"AccessoryType": "None",
 						"UseTopPadding": false
+					},
+					"Separators": {
+						"TopSectionSeparator": false,
+						"BottomSectionSeparator": true,
+						"HeaderSeparator": true,
+						"FooterSeparator": true,
+						"ControlSeparator": true
 					},
 					"_Type": "Section.Type.ObjectTable",
 					"Target": {
 						"EntitySet": "Incident",
 						"Service": "/MDKApp/Services/IncidentManagement.service",
-						"QueryOptions": "$expand=customer&$filter=serviceWorker_ID eq workerID"
+						"QueryOptions": "$expand=customer&$filter=serviceWorker_ID eq 102"
 					},
 					"_Name": "SectionObjectTable0",
+					"Visible": true,
 					"EmptySection": {
 						"Caption": "No incident found!",
 						"FooterVisible": false
@@ -24,16 +53,20 @@
 					"ObjectCell": {
 						"ContextMenu": {
 							"Items": [],
-							"PerformFirstActionWithFullSwipe": true
+							"PerformFirstActionWithFullSwipe": true,
+							"_Type": "ObjectCell.Type.ContextMenu",
+							"LeadingItems": [],
+							"TrailingItems": []
 						},
 						"Title": "{Title}",
 						"Subhead": "ID: {ID}",
+						"Footnote": "Reported by {customer/FirstName} {customer/LastName}",
 						"Description": "{Description}",
 						"StatusText": "{Urgency}",
 						"StatusImage": "/MDKApp/Rules/Incident/ShowPriorityImage.js",
 						"SubstatusText": "{Status}",
 						"PreserveIconStackSpacing": false,
-						"AccessoryType": "disclosureIndicator",
+						"AccessoryType": "DisclosureIndicator",
 						"Tags": [],
 						"AvatarStack": {
 							"Avatars": [
@@ -41,9 +74,15 @@
 									"Image": "/MDKApp/Services/IncidentManagement.service/{@odata.readLink}/DeviceImage"
 								}
 							],
+							"ImageIsCircular": true,
+							"ImageHasBorder": false
+						},
+						"AvatarGrid": {
 							"ImageIsCircular": true
 						},
-						"OnPress": "/MDKApp/Actions/Incident/NavToIncident_Detail.action"
+						"OnPress": "/MDKApp/Actions/Incident/NavToIncident_Detail.action",
+						"_Type": "ObjectTable.Type.ObjectCell",
+						"Selected": false
 					},
 					"Search": {
 						"Enabled": true,
@@ -55,7 +94,14 @@
 					"DataPaging": {
 						"ShowLoadingIndicator": true,
 						"LoadingIndicatorText": "Loading more items, please wait..."
-					}
+					},
+					"Grouping": {
+						"GroupingProperties": [],
+						"Header": {
+							"Items": []
+						}
+					},
+					"HighlightSelectedItem": false
 				}
 			],
 			"LoadingIndicator": {
@@ -64,16 +110,15 @@
 			}
 		}
 	],
-	"_Type": "Page",
-	"_Name": "Incident_List",
-	"Caption": "Incidents",
-	"PrefersLargeCaption": true,
-		"PullDown": {
+	"PullDown": {
 		"OnPulledDown": "/MDKApp/Actions/Service/SyncStartedMessage.action"
 	},
+	"_Type": "Page",
+	"_Name": "Incident_List",
 	"ActionBar": {
 		"Items": [
 			{
+				"_Type": "Control.Type.ActionBarItem",
 				"_Name": "ActionBarItem0",
 				"Caption": "User",
 				"Icon": "sap-icon://customer",
@@ -83,6 +128,9 @@
 				"OnPress": "/MDKApp/Actions/Application/UserMenuPopover.action"
 			}
 		],
-		"_Name": "ActionBar1"
+		"_Name": "ActionBar1",
+		"_Type": "Control.Type.ActionBar",
+		"Caption": "Incidents",
+		"PrefersLargeCaption": true
 	}
 }

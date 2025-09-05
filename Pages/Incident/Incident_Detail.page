@@ -1,93 +1,125 @@
 {
-	"Caption": "Incident Detail",
 	"DesignTimeTarget": {
 		"Service": "/MDKApp/Services/IncidentManagement.service",
 		"EntitySet": "Incident",
 		"QueryOptions": ""
 	},
-	"ActionBar": {
-		"Items": [
-
-			{
-				"OnPress": "/MDKApp/Actions/Incident/Incident_OpenDocument.action",
-				"Position": "Right",
-				"Caption": "View Image",
-				"Visible": "/MDKApp/Rules/Incident/ShowDeviceImageActionbarItem.js"
-			}
-
-		]
-	},
-	"Controls": [{
-		"Sections": [{
-				"ObjectHeader": {
-					"Tags": [],
-					"DetailImage": "/MDKApp/Services/IncidentManagement.service/{@odata.readLink}/DeviceImage",
-					"HeadlineText": "{Title}",
-					"Subhead": "{ID}",
-					"BodyText": "",
-					"Footnote": "{Status}",
-					"Description": "{Description}",
-					"StatusText": "{Urgency}",
-					"StatusImage": "",
-					"SubstatusImage": "",
-					"SubstatusText": "{DeviceID}",
-					"DetailImageIsCircular": true
-				},
-				"_Type": "Section.Type.ObjectHeader"
-			},
-			{
-				"KeyAndValues": [{
-						"KeyName": "Customer Addresss",
-						"Value": "/MDKApp/Rules/Customer/Customer_FormatAddress.js",
-						"LinkColor": "#6189C7",
-						"OnPress": "/MDKApp/Rules/Customer/Customer_OpenMaps.js"
+	"Controls": [
+		{
+			"DataSubscriptions": [],
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "SectionedTable",
+			"Sections": [
+				{
+					"KeyAndValues": [
+						{
+							"LinkColor": "#6189C7",
+							"Value": "/MDKApp/Rules/Customer/Customer_FormatAddress.js",
+							"_Type": "KeyValue.Type.Item",
+							"_Name": "KeyValue0",
+							"KeyName": "Customer Addresss",
+							"Visible": true,
+							"OnPress": "/MDKApp/Rules/Customer/Customer_OpenMaps.js"
+						},
+						{
+							"Value": "{ID}",
+							"_Type": "KeyValue.Type.Item",
+							"_Name": "KeyValue1",
+							"KeyName": "Incident ID",
+							"Visible": true
+						},
+						{
+							"Value": "{Title}",
+							"_Type": "KeyValue.Type.Item",
+							"_Name": "KeyValue2",
+							"KeyName": "Title",
+							"Visible": true
+						},
+						{
+							"Value": "{Description}",
+							"_Type": "KeyValue.Type.Item",
+							"_Name": "KeyValue3",
+							"KeyName": "Description",
+							"Visible": true
+						},
+						{
+							"Value": "{Status}",
+							"_Type": "KeyValue.Type.Item",
+							"_Name": "KeyValue4",
+							"KeyName": "Status",
+							"Visible": true
+						},
+						{
+							"Value": "{Urgency}",
+							"_Type": "KeyValue.Type.Item",
+							"_Name": "KeyValue5",
+							"KeyName": "Urgency",
+							"Visible": true
+						},
+						{
+							"Value": "{DeviceID}",
+							"_Type": "KeyValue.Type.Item",
+							"_Name": "KeyValue6",
+							"KeyName": "Defective Device ID",
+							"Visible": true
+						},
+						{
+							"Value": "{customer_ID}",
+							"_Type": "KeyValue.Type.Item",
+							"_Name": "KeyValue7",
+							"KeyName": "customer_ID",
+							"Visible": true
+						},
+						{
+							"Value": "{serviceWorker_ID}",
+							"_Type": "KeyValue.Type.Item",
+							"_Name": "KeyValue8",
+							"KeyName": "serviceWorker_ID",
+							"Visible": true
+						}
+					],
+					"MaxItemCount": 1,
+					"_Type": "Section.Type.KeyValue",
+					"_Name": "SectionKeyValue0",
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
 					},
-					{
-						"KeyName": "Incident ID",
-						"Value": "{ID}"
+					"Separators": {
+						"TopSectionSeparator": false,
+						"BottomSectionSeparator": true,
+						"HeaderSeparator": true,
+						"FooterSeparator": true,
+						"ControlSeparator": true
 					},
-					{
-						"KeyName": "Title",
-						"Value": "{Title}"
-					},
-					{
-						"KeyName": "Description",
-						"Value": "{Description}"
-					},
-					{
-						"KeyName": "Status",
-						"Value": "{Status}"
-					},
-					{
-						"KeyName": "Urgency",
-						"Value": "{Urgency}"
-					},
-					{
-						"KeyName": "Defective Device ID",
-						"Value": "{DeviceID}"
-					},
-					{
-						"KeyName": "customer_ID",
-						"Value": "{customer_ID}"
-					},
-					{
-						"KeyName": "serviceWorker_ID",
-						"Value": "{serviceWorker_ID}"
+					"Layout": {
+						"NumberOfColumns": 2
 					}
-				],
-				"Layout": {
-					"NumberOfColumns": 2
-				},
-				"MaxItemCount": 1,
-				"_Name": "SectionKeyValue0",
-				"_Type": "Section.Type.KeyValue"
+				}
+			],
+			"FilterFeedbackBar": {
+				"ShowAllFilters": false,
+				"_Type": "Control.Type.FilterFeedbackBar"
 			}
-		],
-		"DataSubscriptions": [],
-		"_Type": "Control.Type.SectionedTable",
-		"_Name": "SectionedTable"
-	}],
+		}
+	],
 	"_Type": "Page",
 	"_Name": "Incident_Detail",
-	"PrefersLargeCaption": true
+	"ActionBar": {
+		"Items": [
+			{
+				"_Type": "Control.Type.ActionBarItem",
+				"_Name": "ActionBarItem0",
+				"Caption": "View Image",
+				"Position": "Right",
+				"IsIconCircular": false,
+				"Visible": "/MDKApp/Rules/Incident/ShowDeviceImageActionbarItem.js",
+				"OnPress": "/MDKApp/Actions/Incident/Incident_OpenDocument.action"
+			}
+		],
+		"_Name": "ActionBar0",
+		"_Type": "Control.Type.ActionBar",
+		"Caption": "Incident Detail",
+		"PrefersLargeCaption": true
+	}
 }
