@@ -42,7 +42,7 @@
 					"Target": {
 						"EntitySet": "Incident",
 						"Service": "/MDKApp/Services/IncidentManagement.service",
-						"QueryOptions": "$expand=customer&$filter=serviceWorker_ID eq 102"
+						"QueryOptions": "$expand=customer&$filter=serviceWorker_ID eq workerID"
 					},
 					"_Name": "SectionObjectTable0",
 					"Visible": true,
