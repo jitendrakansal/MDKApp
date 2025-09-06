@@ -1,4 +1,6 @@
 {
+	"_Type": "Action.Type.PopoverMenu",
+	"IsBottomSheet": true,
 	"PopoverItems": [
 		{
 			"Enabled": true,
@@ -35,6 +37,5 @@
 			"Title": "Logout",
 			"Visible": "$(PLT,true,true,false)"
 		}
-	],
-	"_Type": "Action.Type.PopoverMenu"
+	]
 }
