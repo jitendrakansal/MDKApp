@@ -130,6 +130,6 @@
 		"_Name": "ActionBar0",
 		"_Type": "Control.Type.ActionBar",
 		"Caption": "Incident Detail",
-		"PrefersLargeCaption": true
+		"PreferredCaptionSize": "Large"
 	}
 }

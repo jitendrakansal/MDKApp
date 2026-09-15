@@ -12,7 +12,7 @@
 			}
 		],
 		"Caption": "Settings",
-		"PrefersLargeCaption": true,
+		"PreferredCaptionSize": "Large",
 		"_Type": "Control.Type.ActionBar"
 	},
 	"Controls": [
