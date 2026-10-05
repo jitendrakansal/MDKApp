@@ -1,0 +1,311 @@
+diff --git a/Actions/Incident/Incident_UpdateEntity.action b/Actions/Incident/Incident_UpdateEntity.action
+new file mode 100644
+index 0000000..2f343b2
+--- /dev/null
++++ b/Actions/Incident/Incident_UpdateEntity.action
+@@ -0,0 +1,23 @@
++{
++	"_Type": "Action.Type.ODataService.UpdateEntity",
++	"ActionResult": {
++		"_Name": "Incident_UpdateEntity"
++	},
++	"OnFailure": {
++		"Name": "/MDKApp/Actions/GenericMessageBox.action",
++		"Properties": {
++			"Message": "Update entity failure - {#ActionResults:Incident_UpdateEntity/error}",
++			"Title": "Update Incident"
++		}
++	},
++	"OnSuccess": "/MDKApp/Actions/Incident/Incident_UploadStream.action",
++	"Target": {
++		"Service": "/MDKApp/Services/IncidentManagement.service",
++		"EntitySet": "Incident",
++		"ReadLink": "{@odata.readLink}"
++	},
++	"Properties": {
++		"Status": "#Control:FCStatus/#SelectedValue",
++		"DeviceID": "#Control:FCDeviceID/#Value"
++	}
++}
+\ No newline at end of file
+diff --git a/Actions/Incident/Incident_UploadStream.action b/Actions/Incident/Incident_UploadStream.action
+new file mode 100644
+index 0000000..d110da9
+--- /dev/null
++++ b/Actions/Incident/Incident_UploadStream.action
+@@ -0,0 +1,30 @@
++{
++	"_Type": "Action.Type.ODataService.UploadStream",
++	"ActionResult": {
++		"_Name": "Incident_UploadStream"
++	},
++	"OnFailure": {
++		"Name": "/MDKApp/Actions/GenericMessageBox.action",
++		"Properties": {
++			"Message": "Upload Stream failure - {#ActionResults:Incident_UploadStream/error}",
++			"Title": "Upload Stream"
++		}
++	},
++	"OnSuccess": {
++		"Name": "/MDKApp/Actions/GenericToastMessage.action",
++		"Properties": {
++			"OnSuccess": "/MDKApp/Actions/CloseModalPage_Complete.action",
++			"Message": "Entity updated",
++			"Duration": 2
++		}
++	},
++	"Target": {
++		"Service": "/MDKApp/Services/IncidentManagement.service",
++		"EntitySet": "Incident",
++		"ReadLink": "{@odata.readLink}"
++	},
++	"Properties": {
++		"DeviceImage": "#Control:FCDeviceImage/#Value",
++		"ResolutionSignatureImage": "#Control:FCCustomerSignature/#Value"
++	}
++}
+\ No newline at end of file
+diff --git a/Pages/Incident/Incident_Detail.page b/Pages/Incident/Incident_Detail.page
+index 970a621..3b42076 100644
+--- a/Pages/Incident/Incident_Detail.page
++++ b/Pages/Incident/Incident_Detail.page
+@@ -150,7 +150,7 @@
+ 				"SystemItem": "Edit",
+ 				"Position": "Right",
+ 				"IsIconCircular": false,
+-				"Visible": true,
++				"Visible": "/MDKApp/Rules/Incident/EditOptionVisibility.js",
+ 				"OnPress": "/MDKApp/Actions/Incident/NavToIncident_Edit.action"
+ 			},
+ 			{
+diff --git a/Pages/Incident/Incident_Edit.page b/Pages/Incident/Incident_Edit.page
+index 159a0ac..9ad5417 100644
+--- a/Pages/Incident/Incident_Edit.page
++++ b/Pages/Incident/Incident_Edit.page
+@@ -6,7 +6,100 @@
+ 				"_Type": "Control.Type.FilterFeedbackBar"
+ 			},
+ 			"_Type": "Control.Type.SectionedTable",
+-			"_Name": "SectionedTable0"
++			"_Name": "SectionedTable0",
++			"Sections": [
++				{
++					"Separators": {
++						"TopSectionSeparator": false,
++						"BottomSectionSeparator": true,
++						"HeaderSeparator": true,
++						"FooterSeparator": true,
++						"ControlSeparator": true
++					},
++					"Controls": [
++						{
++							"Value": [
++								"{Status}"
++							],
++							"_Type": "Control.Type.FormCell.ListPicker",
++							"_Name": "FCStatus",
++							"RequiredIndicator": true,
++							"IsVisible": true,
++							"Separator": true,
++							"AllowMultipleSelection": false,
++							"AllowEmptySelection": false,
++							"Caption": "Status",
++							"DataPaging": {
++								"ShowLoadingIndicator": false,
++								"PageSize": 50
++							},
++							"PickerPrompt": "Please select one single item",
++							"PlaceHolder": "Status",
++							"OnValueChange": "/MDKApp/Rules/StatusChangeProtocol.js",
++							"IsSelectedSectionEnabled": false,
++							"IsPickerDismissedOnSelection": true,
++							"AllowDefaultValueIfOneItem": false,
++							"IsEditable": true,
++							"PickerItems": [
++								"In Progress",
++								"Closed"
++							]
++						},
++						{
++							"Value": "{DeviceID}",
++							"_Type": "Control.Type.FormCell.SimpleProperty",
++							"_Name": "FCDeviceID",
++							"RequiredIndicator": true,
++							"IsVisible": true,
++							"Separator": true,
++							"Caption": "Device ID",
++							"PlaceHolder": "Type in the device's ID or scan its barcode",
++							"AlternateInput": "Barcode",
++							"Enabled": true,
++							"IsEditable": true
++						},
++						{
++							"_Type": "Control.Type.FormCell.Attachment",
++							"_Name": "FCDeviceImage",
++							"RequiredIndicator": true,
++							"IsVisible": false,
++							"Separator": true,
++							"IsEditable": true,
++							"MaxAttachments": 1,
++							"MaxFileSize": 0,
++							"AttachmentActionType": [
++								"AddPhoto",
++								"TakePhoto"
++							],
++							"AttachmentTitle": "Device Image",
++							"AttachmentAddTitle": "Add"
++						},
++						{
++							"_Type": "Control.Type.FormCell.SignatureCapture",
++							"_Name": "FCCustomerSignature",
++							"RequiredIndicator": true,
++							"IsVisible": false,
++							"Separator": true,
++							"Caption": "Customer Signature",
++							"ShowTimestampInImage": true,
++							"ShowXMark": true,
++							"ShowUnderline": true,
++							"WatermarkText": "Signed by {customer/FirstName} {customer/LastName}",
++							"WatermarkTextMaxLines": 5,
++							"TimestampFormatter": "YYYY-MM-dd 'at' HH:mm:ss"
++						}
++					],
++					"Layout": {
++						"NumberOfColumns": 1
++					},
++					"Visible": true,
++					"EmptySection": {
++						"FooterVisible": false
++					},
++					"_Type": "Section.Type.FormCell",
++					"_Name": "SectionFormCell0"
++				}
++			]
+ 		}
+ 	],
+ 	"DesignTimeTarget": {
+@@ -27,6 +120,16 @@
+ 				"IsIconCircular": false,
+ 				"Visible": true,
+ 				"OnPress": "/MDKApp/Actions/CloseModalPage_Cancel.action"
++			},
++			{
++				"_Type": "Control.Type.ActionBarItem",
++				"_Name": "ActionBarItem1",
++				"Caption": "Save",
++				"SystemItem": "Save",
++				"Position": "Right",
++				"IsIconCircular": false,
++				"Visible": true,
++				"OnPress": "/MDKApp/Rules/Incident/Incident_ValidateEdit.js"
+ 			}
+ 		],
+ 		"_Name": "ActionBar1",
+diff --git a/Rules/Incident/EditOptionVisibility.js b/Rules/Incident/EditOptionVisibility.js
+new file mode 100644
+index 0000000..fca2c35
+--- /dev/null
++++ b/Rules/Incident/EditOptionVisibility.js
+@@ -0,0 +1,13 @@
++/**
++* Describe this function...
++* @param {IClientAPI} clientAPI
++*/
++export default function EditOptionVisibility(clientAPI) {
++    let currentStatus = clientAPI.binding.Status;
++    if (currentStatus == "Closed") {
++        return false;
++    }
++    else {
++        return true;
++    }
++}
+diff --git a/Rules/Incident/Incident_ValidateEdit.js b/Rules/Incident/Incident_ValidateEdit.js
+new file mode 100644
+index 0000000..67cd091
+--- /dev/null
++++ b/Rules/Incident/Incident_ValidateEdit.js
+@@ -0,0 +1,56 @@
++/**
++* Describe this function...
++* @param {IClientAPI} clientAPI
++*/
++export default function Incident_ValidateEdit(clientAPI) {
++    var attachments = clientAPI.getPageProxy().getControl('SectionedTable0').getSection('SectionFormCell0').getControl('FCDeviceImage').getValue();
++    var statusPicker = clientAPI.getPageProxy().getControl('SectionedTable0').getSection('SectionFormCell0').getControl('FCStatus').getValue();
++    var currentStatus;
++    if (statusPicker.length > 0 && statusPicker[0].ReturnValue) {
++        currentStatus = statusPicker[0].ReturnValue;
++    }
++    var customerSignature = clientAPI.getPageProxy().getControl('SectionedTable0').getSection('SectionFormCell0').getControl('FCCustomerSignature').getValue();
++    var deviceID = clientAPI.getPageProxy().getControl('SectionedTable0').getSection('SectionFormCell0').getControl('FCDeviceID').getValue();
++    if (!currentStatus) {
++        return clientAPI.executeAction({
++            "Name": '/MDKApp/Actions/GenericMessageBox.action',
++            "Properties": {
++                "Message": "Please select status",
++                "Title": "Validation"
++            }
++        })
++    }
++    if (!deviceID) {
++        return clientAPI.executeAction({
++            "Name": '/MDKApp/Actions/GenericMessageBox.action',
++            "Properties": {
++                "Message": "Device ID is required",
++                "Title": "Validation"
++            }
++        })
++    }
++    if (currentStatus === "Closed" && attachments.length !== 1) {
++        return clientAPI.executeAction({
++            "Name": '/MDKApp/Actions/GenericMessageBox.action',
++            "Properties": {
++                "Message": attachments.length < 1 ? "Please add 1 device image" : "Max. 1 image allowed for the device",
++                "Title": "Validation"
++            }
++        })
++    }
++    if (currentStatus === "Closed" && !customerSignature) {
++        return clientAPI.executeAction({
++            "Name": '/MDKApp/Actions/GenericMessageBox.action',
++            "Properties": {
++                "Message": "Customer Signature is required",
++                "Title": "Validation"
++            }
++        })
++    }
++    return clientAPI.executeAction({
++        "Name": '/MDKApp/Actions/Incident/Incident_UpdateEntity.action',
++        "Properties": {
++            "OnSuccess": currentStatus === "Closed" ? "/MDKApp/Actions/Incident/Incident_UploadStream.action" : "/MDKApp/Actions/CloseModalPage_Complete.action"
++        }
++    })
++}
+diff --git a/Rules/StatusChangeProtocol.js b/Rules/StatusChangeProtocol.js
+new file mode 100644
+index 0000000..93b6ec8
+--- /dev/null
++++ b/Rules/StatusChangeProtocol.js
+@@ -0,0 +1,21 @@
++/**
++* Describe this function...
++* @param {IClientAPI} clientAPI
++*/
++export default function StatusChangeProtocol(clientAPI) {
++    //Get the Sectioned Table based on the name
++    const sectionedTable = clientAPI.getPageProxy().getControl('SectionedTable0');
++    //Get the section based on the name
++    const fcsection = sectionedTable.getSection('SectionFormCell0');
++    //Get the control based on the name
++    const fcAttachment = fcsection.getControl('FCDeviceImage');
++    const fcSignatureCapture = fcsection.getControl('FCCustomerSignature');
++    const selectedValue = clientAPI.getValue()[0].ReturnValue;
++    if (selectedValue == "In Process") {
++        fcAttachment.setVisible(false);
++        fcSignatureCapture.setVisible(false);
++    } else if (selectedValue == "Closed") {
++        fcAttachment.setVisible(true);
++        fcSignatureCapture.setVisible(true);
++    }
++}

@@ -1,0 +1,147 @@
+diff --git a/Pages/Incident/Incident_List.page b/Pages/Incident/Incident_List.page
+index fe4e23a..7235fcb 100644
+--- a/Pages/Incident/Incident_List.page
++++ b/Pages/Incident/Incident_List.page
+@@ -130,7 +130,7 @@
+ 		],
+ 		"_Name": "ActionBar1",
+ 		"_Type": "Control.Type.ActionBar",
+-		"Caption": "Incidents",
++		"Caption": "$(L,'Incidents')",
+ 		"PreferredCaptionSize": "Large"
+ 	}
+ }
+\ No newline at end of file
+diff --git a/i18n/i18n_de.properties b/i18n/i18n_de.properties
+new file mode 100644
+index 0000000..31b4ed8
+--- /dev/null
++++ b/i18n/i18n_de.properties
+@@ -0,0 +1,13 @@
++Customer=Kunde
++Customer_Detail=Kundendetail
++Create_Customer_Detail=Kundendetail erstellen
++Update_Customer_Detail=Kundendetail aktualisieren
++Create_Incident=Vorfall erstellen
++Incidents=Vorfälle
++Incident_Detail=Vorfalldetail
++Create_Incident_Detail=Vorfalldetail erstellen
++Update_Incident_Detail=Vorfalldetail aktualisieren
++ServiceWorker=Servicemitarbeiter
++ServiceWorker_Detail=Servicemitarbeiterdetail
++Create_ServiceWorker_Detail=Servicemitarbeiterdetail erstellen
++Update_ServiceWorker_Detail=Servicemitarbeiterdetail aktualisieren
+diff --git a/i18n/i18n_es.properties b/i18n/i18n_es.properties
+new file mode 100644
+index 0000000..ea3e790
+--- /dev/null
++++ b/i18n/i18n_es.properties
+@@ -0,0 +1,13 @@
++Customer=Cliente
++Customer_Detail=Detalle del cliente
++Create_Customer_Detail=Crear detalle del cliente
++Update_Customer_Detail=Actualizar detalle del cliente
++Create_Incident=Crear incidente
++Incidents=Incidentes
++Incident_Detail=Detalle del incidente
++Create_Incident_Detail=Crear detalle del incidente
++Update_Incident_Detail=Actualizar detalle del incidente
++ServiceWorker=Técnico de servicio
++ServiceWorker_Detail=Detalle del técnico de servicio
++Create_ServiceWorker_Detail=Crear detalle del técnico de servicio
++Update_ServiceWorker_Detail=Actualizar detalle del técnico de servicio
+diff --git a/i18n/i18n_fr.properties b/i18n/i18n_fr.properties
+new file mode 100644
+index 0000000..11bb8aa
+--- /dev/null
++++ b/i18n/i18n_fr.properties
+@@ -0,0 +1,13 @@
++Customer=Client
++Customer_Detail=Détail du client
++Create_Customer_Detail=Créer un détail du client
++Update_Customer_Detail=Mettre à jour le détail du client
++Create_Incident=Créer un incident
++Incidents=Incidents
++Incident_Detail=Détail de l'incident
++Create_Incident_Detail=Créer un détail de l'incident
++Update_Incident_Detail=Mettre à jour le détail de l'incident
++ServiceWorker=Agent de service
++ServiceWorker_Detail=Détail de l'agent de service
++Create_ServiceWorker_Detail=Créer un détail de l'agent de service
++Update_ServiceWorker_Detail=Mettre à jour le détail de l'agent de service
+diff --git a/i18n/i18n_it.properties b/i18n/i18n_it.properties
+new file mode 100644
+index 0000000..65c894f
+--- /dev/null
++++ b/i18n/i18n_it.properties
+@@ -0,0 +1,13 @@
++Customer=Cliente
++Customer_Detail=Dettagli cliente
++Create_Customer_Detail=Crea dettagli cliente
++Update_Customer_Detail=Aggiorna dettagli cliente
++Create_Incident=Crea incidente
++Incidents=Incidenti
++Incident_Detail=Dettagli incidente
++Create_Incident_Detail=Crea dettagli incidente
++Update_Incident_Detail=Aggiorna dettagli incidente
++ServiceWorker=Tecnico di servizio
++ServiceWorker_Detail=Dettagli tecnico di servizio
++Create_ServiceWorker_Detail=Crea dettagli tecnico di servizio
++Update_ServiceWorker_Detail=Aggiorna dettagli tecnico di servizio
+diff --git a/i18n/i18n_ja.properties b/i18n/i18n_ja.properties
+new file mode 100644
+index 0000000..3672d98
+--- /dev/null
++++ b/i18n/i18n_ja.properties
+@@ -0,0 +1,13 @@
++Customer=顧客
++Customer_Detail=顧客詳細
++Create_Customer_Detail=顧客詳細を作成
++Update_Customer_Detail=顧客詳細を更新
++Create_Incident=インシデントを作成
++Incidents=インシデント
++Incident_Detail=インシデント詳細
++Create_Incident_Detail=インシデント詳細を作成
++Update_Incident_Detail=インシデント詳細を更新
++ServiceWorker=サービスワーカー
++ServiceWorker_Detail=サービスワーカー詳細
++Create_ServiceWorker_Detail=サービスワーカー詳細を作成
++Update_ServiceWorker_Detail=サービスワーカー詳細を更新
+diff --git a/i18n/i18n_pt.properties b/i18n/i18n_pt.properties
+new file mode 100644
+index 0000000..d731339
+--- /dev/null
++++ b/i18n/i18n_pt.properties
+@@ -0,0 +1,13 @@
++Customer=Cliente
++Customer_Detail=Detalhe do cliente
++Create_Customer_Detail=Criar detalhe do cliente
++Update_Customer_Detail=Atualizar detalhe do cliente
++Create_Incident=Criar incidente
++Incidents=Incidentes
++Incident_Detail=Detalhe do incidente
++Create_Incident_Detail=Criar detalhe do incidente
++Update_Incident_Detail=Atualizar detalhe do incidente
++ServiceWorker=Técnico de serviço
++ServiceWorker_Detail=Detalhe do técnico de serviço
++Create_ServiceWorker_Detail=Criar detalhe do técnico de serviço
++Update_ServiceWorker_Detail=Atualizar detalhe do técnico de serviço
+diff --git a/i18n/i18n_zh.properties b/i18n/i18n_zh.properties
+new file mode 100644
+index 0000000..821393d
+--- /dev/null
++++ b/i18n/i18n_zh.properties
+@@ -0,0 +1,13 @@
++Customer=客户
++Customer_Detail=客户详细信息
++Create_Customer_Detail=创建客户详细信息
++Update_Customer_Detail=更新客户详细信息
++Create_Incident=创建事件
++Incidents=事件
++Incident_Detail=事件详细信息
++Create_Incident_Detail=创建事件详细信息
++Update_Incident_Detail=更新事件详细信息
++ServiceWorker=服务人员
++ServiceWorker_Detail=服务人员详细信息
++Create_ServiceWorker_Detail=创建服务人员详细信息
++Update_ServiceWorker_Detail=更新服务人员详细信息
