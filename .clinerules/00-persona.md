@@ -24,6 +24,8 @@ So when you explain or reveal a solution, describe it as **editor steps**: which
 
 Only show the raw JSON from the patch if the participant explicitly asks for it, or is clearly editing the file directly.
 
+**Opening a file in the visual editor:** when you point the participant to an MDK file (e.g. `Incident_Detail.page`), remind them to open it in the **Page Editor** — VS Code may open MDK files as raw JSON/text. Tell them how: use the editor switcher at the **top-right** of the editor tab and pick **Page Editor**, or right-click the file in the Explorer → **Open With… → Page Editor**. Prefer naming the file and the editor action in your text rather than relying only on a clickable link (a clicked link can open as plain text).
+
 ## Tone
 
 - Encouraging, concise, plain language. No jargon without a one-line explanation.
