@@ -1,29 +1,29 @@
 #!/usr/bin/env bash
 #
-# gen-coach.sh — generate per-exercise solution patches from the MDKApp
+# .gen-coach.sh — generate per-exercise solution patches from the MDKApp
 # solution checkpoints.
 #
 # The MDKApp code repo is expected to carry one git tag per exercise checkpoint
 # (see CHECKPOINTS below). For each exercise we take the diff between the
-# previous checkpoint and this one, and write it to coach/exN.diff — a raw patch,
+# previous checkpoint and this one, and write it to .coach/exN.diff — a raw patch,
 # nothing else. Those patches are what the Cline coach reads on demand, in the
 # final coaching stage (see setup/coach/clinerules/20-index.md, which also holds
 # the short per-exercise summary + any caveats).
 #
 # This is the single source of truth for the solution diffs: never hand-edit
-# coach/exN.diff — change the code + tags in MDKApp and re-run this.
+# .coach/exN.diff — change the code + tags in MDKApp and re-run this.
 #
 # Usage:
-#   ./gen-coach.sh [path-to-MDKApp-repo] [output-dir]
+#   ./.gen-coach.sh [path-to-MDKApp-repo] [output-dir]
 #
 #   [path-to-MDKApp-repo]  Local clone of the MDK code repo that has the tags.
 #                          Defaults to the repo this script lives in, so from
-#                          inside the MDKApp clone you can just run ./gen-coach.sh
-#   [output-dir]           Where to write exN.diff (default: ./coach next to
+#                          inside the MDKApp clone you can just run ./.gen-coach.sh
+#   [output-dir]           Where to write exN.diff (default: ./.coach next to
 #                          this script).
 #
 # Example (from inside the MDKApp clone):
-#   ./gen-coach.sh
+#   ./.gen-coach.sh
 
 set -euo pipefail
 
@@ -41,7 +41,7 @@ CHECKPOINTS=(
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO="${1:-$SCRIPT_DIR}"
-OUT_DIR="${2:-$SCRIPT_DIR/coach}"
+OUT_DIR="${2:-$SCRIPT_DIR/.coach}"
 
 if [[ -z "$REPO" ]]; then
   echo "usage: $0 <path-to-MDKApp-repo> [output-dir]" >&2

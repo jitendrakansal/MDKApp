@@ -1,9 +1,17 @@
-{
 
-	"Build": {
-		"SourceMap": true,
-		"TSTarget": "es6",
-		"WMF": true,
-		"Platform": "iOS & Android"
-	}
+{
+"Build": {
+"SourceMap": true,
+"TSTarget": "es6",
+"WMF": true,
+"Platform": "iOS & Android"
+},
+"Onboarding": {
+"Schema": "sapmobilesvcs",
+"TimeZone": "UTC",
+"URL": ""
+},
+"MobileService": {
+"Type": "standard"
+}
 }
