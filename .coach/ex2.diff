@@ -1,0 +1,56 @@
+diff --git a/Pages/Incident/Incident_Detail.page b/Pages/Incident/Incident_Detail.page
+index 1c89ab3..970a621 100644
+--- a/Pages/Incident/Incident_Detail.page
++++ b/Pages/Incident/Incident_Detail.page
+@@ -2,7 +2,7 @@
+ 	"DesignTimeTarget": {
+ 		"Service": "/MDKApp/Services/IncidentManagement.service",
+ 		"EntitySet": "Incident",
+-		"QueryOptions": ""
++		"QueryOptions": "$expand=customer"
+ 	},
+ 	"Controls": [
+ 		{
+@@ -14,6 +14,42 @@
+ 			"_Type": "Control.Type.SectionedTable",
+ 			"_Name": "SectionedTable",
+ 			"Sections": [
++				{
++					"Separators": {
++						"TopSectionSeparator": false,
++						"BottomSectionSeparator": true,
++						"HeaderSeparator": true,
++						"FooterSeparator": true,
++						"ControlSeparator": true
++					},
++					"_Type": "Section.Type.ProfileHeader",
++					"_Name": "SectionProfileHeader0",
++					"Visible": true,
++					"ProfileHeader": {
++						"DetailImage": "sap-icon://customer",
++						"DetailImageIsCircular": true,
++						"Headline": "{customer/FirstName} {customer/LastName}",
++						"Subheadline": "{customer/AddressCity} {customer/AddressCountry}",
++						"Description": "Description",
++						"ActivityItems": [
++							{
++								"_Name": "SectionProfileHeader0ActivityItems0",
++								"ActivityType": "Phone",
++								"ActivityValue": "{customer/Phone}"
++							},
++							{
++								"_Name": "SectionProfileHeader0ActivityItems1",
++								"ActivityType": "Email",
++								"ActivityValue": "{customer/Email}"
++							},
++							{
++								"_Name": "SectionProfileHeader0ActivityItems2",
++								"ActivityType": "Message",
++								"ActivityValue": "{customer/Phone}"
++							}
++						]
++					}
++				},
+ 				{
+ 					"KeyAndValues": [
+ 						{
