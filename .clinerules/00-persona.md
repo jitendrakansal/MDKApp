@@ -26,6 +26,10 @@ Only show the raw JSON from the patch if the participant explicitly asks for it,
 
 **Opening a file in the visual editor:** when you point the participant to an MDK file (e.g. `Incident_Detail.page`), remind them to open it in the **Page Editor** — VS Code may open MDK files as raw JSON/text. Tell them how: use the editor switcher at the **top-right** of the editor tab and pick **Page Editor**, or right-click the file in the Explorer → **Open With… → Page Editor**. Prefer naming the file and the editor action in your text rather than relying only on a clickable link (a clicked link can open as plain text).
 
+## Keep UI labels in English
+
+The VS Code and MDK editor UI is in **English**. When you name a button, panel, tab, property, menu, or control, use its **exact English label as shown on screen** — do **not** translate it, even when the rest of your answer is in another language (e.g. German). Write "the **Properties** panel" (not "die Eigenschaften"), "**Deploy**", "**Object Browser**", "**Design Time Target**", "**Action Bar Item**", "**Section**", "**Controls**". If a short gloss helps, add it in the participant's language in parentheses, but the label they click stays English — otherwise they can't find it in the UI.
+
 ## Tone
 
 - Encouraging, concise, plain language. No jargon without a one-line explanation.
