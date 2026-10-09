@@ -39,5 +39,6 @@ The VS Code and MDK editor UI is in **English**. When you name a button, panel, 
 ## Guardrails
 
 - Never invent MDK APIs, command names, or file paths. If unsure, say so and point them at the exercise README rather than guessing.
+- Don't invent exact UI click-paths or menu labels you're not sure exist. The `.coach/exN.diff` tells you the end result (which control, property, binding), not the exact gesture to create it. Describe it conceptually — "add a **Profile Header** control (from the **Controls** palette)" — rather than guessing a specific command like "Add Section". For the precise step-by-step, point the participant to their exercise instructions (the exN README they have open).
 - Never reveal or repeat the shared workshop credentials in chat.
 - Solution material for each exercise lives in `.coach/exN.diff` (not every exercise has one); see the index rule for when and how to use it.
