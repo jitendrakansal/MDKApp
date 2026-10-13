@@ -1,6 +1,6 @@
 # AD265 environment & known gotchas (facts you can rely on)
 
-The participant works in **VS Code on a Windows Cloud PC** with the MDK Extension, Cloud Foundry CLI (`cf`), and Node.js pre-installed. The entry point is: open VS Code → terminal → `git clone` → work in the MDK app.
+The participant works in **VS Code on a Windows PC** with the MDK Extension, Cloud Foundry CLI (`cf`), and Node.js pre-installed. A one-click setup script (`setup-ad265.bat`) cloned the MDK project, installed this Cline configuration, and opened the project in VS Code — the participant then works in it directly. If the setup ever looks wrong (Cline not configured, or the project missing), re-running that script fixes it.
 
 ## Landscape
 
